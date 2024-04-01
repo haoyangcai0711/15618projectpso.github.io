@@ -30,6 +30,16 @@
             margin: 0;
             text-align: center;
         }
+        .header-image {
+            display: block;
+            margin: 20px auto;
+            max-width: 50%; /* Adjusts the maximum width to 50% of its container */
+            height: auto; /* Keeps the aspect ratio */
+        }
+        .image-credit {
+            text-align: center;
+            font-size: 0.8em;
+        }
         section {
             padding: 20px 0;
             border-bottom: 1px solid #eaeaea;
@@ -62,6 +72,12 @@
             <p>Project by Haoyang Cai & Lucy Li</p>
         </div>
     </header>
+
+    <!-- Modified Image Size -->
+    <div>
+        <img class="header-image" src="flock-of-birds.jpg" alt="Flock of Birds">
+        <p class="image-credit">Source: <a href="https://www.stratio.com/blog/swarm-intelligence-metaheuristics-part-2-particle-swarm-optimization/" target="_blank">Stratio Blog</a></p>
+    </div>
 
     <section id="summary">
         <div class="container">
@@ -134,7 +150,7 @@
             </ul>
         </div>
     </section>
-    
+
 
     <section id="goals">
         <div class="container">
