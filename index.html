@@ -99,30 +99,77 @@
     <section id="challenge">
         <div class="container">
             <h2>The Challenge</h2>
-            <p>Describe the challenges your project faces here.</p>
+            <p>
+                Parallelizing the PSO algorithm poses several challenges, primarily related to data dependencies and memory access patterns:
+            </p>
+            <ul>
+                <li>
+                    <strong>Data Dependencies and Synchronization:</strong> Ensuring that all particles are updated after the global best is identified requires synchronization, which could introduce overhead and affect scalability.
+                </li>
+                <li>
+                    <strong>Memory Access:</strong> The PSO algorithm can exhibit irregular memory access patterns, particularly when updating a particle's velocity and position based on the global best, which may not exhibit spatial or temporal locality. This can lead to inefficient use of the GPU's memory hierarchy.
+                </li>
+                <li>
+                    <strong>Divergent Execution:</strong> Particles may converge at different rates, leading to divergent execution paths within a warp, which can reduce SIMD efficiency on the GPU.
+                </li>
+                <li>
+                    <strong>Workload Characterization:</strong> Understanding the balance between computation and memory access in PSO is crucial for effective parallelization. If the computation-to-communication ratio is too low, the overhead of memory accesses may dominate execution time.
+                </li>
+            </ul>
         </div>
     </section>
+    
 
     <section id="resources">
         <div class="container">
             <h2>Resources</h2>
-            <p>List the resources you will be using here.</p>
+            <p>We will utilize NVIDIA GPUs for implementing the CUDA-based PSO, given their widespread availability and robust development tools. The project will start with a basic sequential PSO implementation, which we will then parallelize. We plan to use the following resources:</p>
+            <ul>
+                <li><strong>Development Environment:</strong> NVIDIA CUDA Toolkit for developing and profiling the GPU-based implementation.</li>
+                <li><strong>Base Code:</strong> We will start with an open-source sequential PSO implementation and then modify it for parallel execution.</li>
+                <li><strong>Reference Materials:</strong> We will refer to Kennedy and Eberhart's original paper on PSO, as well as more recent papers discussing parallel implementations of PSO.</li>
+                <li><strong>Hardware:</strong> Access to a CUDA-capable GPU is essential. We will use university GPU resources.</li>
+            </ul>
+            <p>We anticipate needing to explore additional resources on optimizing memory access patterns and reducing synchronization overhead in CUDA. Furthermore, access to advanced profiling tools would be beneficial to understand the performance characteristics of our implementation and identify bottlenecks.</p>
+            <p>By undertaking this project, we aim to gain deeper insights into the challenges and strategies for parallel algorithm design, especially in the context of stochastic optimization methods like PSO. The experience will also enhance our understanding of CUDA programming and GPU architecture.</p>
         </div>
     </section>
+    
 
     <section id="goals">
         <div class="container">
             <h2>Goals and Deliverables</h2>
-            <p>Describe your project's goals and deliverables here.</p>
+            <p><strong>Core Goals (Plan to Achieve):</strong></p>
+            <ul>
+                <li><strong>Functional Parallel PSO Implementation:</strong> Develop and demonstrate a working parallel version of the Particle Swarm Optimization algorithm using CUDA, ensuring that it correctly optimizes benchmark functions.</li>
+                <li><strong>Performance Analysis:</strong> Provide detailed performance analysis comparing the parallel CUDA implementation to the baseline sequential version. This includes execution time, speedup, and efficiency for various problem sizes and complexities.</li>
+                <li><strong>Optimization and Profiling:</strong> Optimize the CUDA implementation to exploit GPU architecture fully, including optimal usage of memory hierarchies and minimizing synchronization overhead. Profile the application to identify and alleviate bottlenecks.</li>
+            </ul>
+            <p><strong>Stretch Goals (Hope to Achieve):</strong></p>
+            <ul>
+                <li><strong>Cross-Platform Comparison:</strong> Compare the CUDA-based PSO performance with implementations on other parallel computing platforms (e.g., OpenCL) to highlight the benefits and potential trade-offs of using CUDA.</li>
+            </ul>
+            <p><strong>Demo:</strong> At the poster session, we plan to showcase a side-by-side comparison of the sequential and parallel PSO implementations, highlighting the performance improvements and scalability of the CUDA-based approach. We will present speedup graphs, execution time comparisons, and possibly an interactive demo showing the algorithm's convergence in real-time on a chosen problem set.</p>
+            <p><strong>Learning Objectives:</strong> Through this project, we aim to learn effective strategies for parallelizing inherently parallel algorithms like PSO on modern GPU architectures, understand how to mitigate common parallelization challenges (e.g., synchronization, memory access patterns), and gain insights into CUDA-specific optimizations that can maximize performance.</p>
+            <p><strong>Questions that we plan to answer:</strong></p>
+            <ul>
+                <li>How does parallelization impact the convergence behavior and solution quality of PSO?</li>
+                <li>What are the primary bottlenecks in parallelizing PSO using CUDA, and how can they be overcome?</li>
+                <li>How do different optimization strategies affect the performance and scalability of the CUDA-based PSO on various GPU architectures?</li>
+            </ul>
         </div>
     </section>
+    
 
     <section id="platform">
         <div class="container">
             <h2>Platform Choice</h2>
-            <p>Explain why you chose your specific platform here.</p>
+            <p>
+                In our project, we choose to use a variety of platforms to evaluate the performance and the scalability of our parallel solution to PSO using CUDA. We will be using GHC machines with NVIDIA RTX 2080 GPUs, our PC with a RTX 4090 GPU, and PSC machines with 64 CPU cores. Testing on different GPUs will show us whether our solution scales to newer generations of GPUs. By comparing our GPU code to existing CPU implementations running on the 64-core PSC machines, we can see if using GPUs will provide a substantial advantage for the PSO problem.
+            </p>
         </div>
     </section>
+    
 
     <section id="schedule">
         <div class="container">
