@@ -59,23 +59,42 @@
     <header>
         <div class="container">
             <h1>Parallelizing Particle Swarm Optimization Using CUDA</h1>
-            <p>Project by [Team Member 1] & [Team Member 2]</p>
+            <p>Project by Haoyang Cai & Lucy Li</p>
         </div>
     </header>
 
     <section id="summary">
         <div class="container">
             <h2>Summary</h2>
-            <p>Fill in your project summary here.</p>
+            <p> We are going to implement a parallel solution of particle swarm optimization using CUDA. </p>
         </div>
     </section>
 
     <section id="background">
         <div class="container">
             <h2>Background</h2>
-            <p>Provide detailed background information here.</p>
+            <p>
+                Particle Swarm Optimization (PSO) is a robust stochastic optimization technique based on the movement and intelligence of swarms. PSO applies the concept of social interaction to solve complex computational problems efficiently. The algorithm iteratively tries to improve a candidate solution with regard to a given measure of quality. It adapts the stochastic and deterministic aspects by having particles in the swarm follow optimal paths while being randomly influenced by the best solutions found so far.
+            </p>
+            <p>
+                In this project, we plan to implement a parallel version of the Particle Swarm Optimization algorithm using CUDA to leverage the computational power of GPUs. The parallelism inherent in the PSO algorithm stems from the fact that each particle's position update can be computed independently given the global and personal best positions. However, the computation of these best positions themselves requires some form of synchronization or reduction across all particles.
+            </p>
+            <p>
+                A key aspect of PSO that could benefit from parallelism is the evaluation of the fitness function for each particle, which is typically the most compute-intensive part of the algorithm, especially for complex problem spaces. By distributing this computation across multiple GPU cores, we can significantly reduce the execution time of the PSO algorithm.
+            </p>
+            <p>
+                The basic idea can be illustrated with the following pseudocode, outlining the parallel computation within a single iteration of PSO:
+            </p>
+            <pre>
+                for each particle i in parallel:
+                  update velocity v[i] based on personal best p[i] and global best g
+                  update position x[i] based on velocity v[i]
+                  evaluate fitness f[i] of new position x[i]
+                reduce all f[i] to find new global best g
+            </pre>
         </div>
     </section>
+    
 
     <section id="challenge">
         <div class="container">
